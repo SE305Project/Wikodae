@@ -120,14 +120,11 @@ breaklines=true,
 	With the developing ofacknowledgement.
 \end{abstract}
 
-\section{MOTIVATION}
-	Regularly, individuals have 
-
 \section{ER Models}
 Our system is 
 
 \section{Table Designs}
-Our final design contains 9 tables. Reference information is not stored in our tables, while all other information are stored. The design of our tables is elaborated below:
+We finished out table design according to our ER model. Our final design contains 9 tables. Reference information is not stored in our tables, while all other information are stored. The design of our tables is elaborated below:
 \subsection{entity}
 \lstset{language=SQL}
 Table schema:
@@ -144,6 +141,15 @@ CREATE TABLE IF NOT EXISTS `wikidata`.`entity` (
   INDEX `ETYPE` (`entity_type` ASC))
 ENGINE = InnoDB
 \end{lstlisting}
+The data strored in corresponding fields:
+\begin{itemize}
+\item \textbf{serial\_id}: Auto incremental serial ID. As language information is introduced here and entity ID can not be used as Primary Key, so we use this serial\_id here as a Primary Key.
+\item \textbf{entity\_id}: ID of the corresponding entity. Eg. Q5, P110, Q123423, etc.
+\item \textbf{entity\_language}: Language of the label of the corresponding entity. Eg. Zh-cn, en, etc.
+\item \textbf{entity\_type}: The entity type identifier. "item" for data items, and "property" for properties.
+\item \textbf{entity\_text}: Contains the labels in different languages. Eg. square kilometre, Kilometro quadrato, Vierkante kilometer, etc.
+\end{itemize}
+Indexed tables: besides indexing the Primary Key serial\_id, other keys including entity\_id, entity\_language and entity\_type are also indexed.
 \subsection{description}
 \lstset{language=SQL}
 Table schema:
@@ -158,6 +164,14 @@ CREATE TABLE IF NOT EXISTS `wikidata`.`description` (
   INDEX `DLANG` (`desc_language` ASC))
 ENGINE = InnoDB
 \end{lstlisting}
+The data strored in corresponding fields:
+\begin{itemize}
+\item \textbf{serial\_id}: Same as in table 'entity'.
+\item \textbf{entity\_id}: Same as in table 'entity'.
+\item \textbf{desc\_language}: Similar to entity\_language in table 'entity'.
+\item \textbf{desc\_text}: Similar to entity\_text in table 'entity'.
+\end{itemize}
+Indexed tables: besides indexing the Primary Key serial\_id, other keys including entity\_id, desc\_language and are also indexed.
 \subsection{mainsnak}
 \lstset{language=SQL}
 Table schema:
@@ -179,6 +193,17 @@ CREATE TABLE IF NOT EXISTS `wikidata`.`mainsnak` (
   INDEX `DTYPE` (`datatype` ASC))
 ENGINE = InnoDB
 \end{lstlisting}
+The data strored in corresponding fields:
+\begin{itemize}
+\item \textbf{snak\_id}: An arbitrary identifier for the claim, used as Primary Key of this table.
+\item \textbf{entity\_id}: ID of the entity this claim belongs to.
+\item \textbf{property\_id}: The property this claim is describing.
+\item \textbf{serial}: This field is X means this is the Xth claim of this property.
+\item \textbf{claimtype}: the type of the claim - currently either statement or claim.
+\item \textbf{snaktype}: The type of the snak. Currently, this is one of value, somevalue or novalue.
+\item \textbf{datatype}: The datatype field indicates how the value of the Snak can be interpreted. This fields indicate the concrete table begining with "datavalue\_"
+\item \textbf{rank}: The rank expresses whether this value will be used in queries, and shown be visible per default on a client system. The value is either preferred, normal or deprecated.
+\end{itemize}
 \subsection{datavalue\_string}
 \lstset{language=SQL}
 Table schema:
@@ -189,6 +214,11 @@ CREATE TABLE IF NOT EXISTS `wikidata`.`datavalue_string` (
   PRIMARY KEY (`snak_id`))
 ENGINE = InnoDB
 \end{lstlisting}
+The data strored in corresponding fields:
+\begin{itemize}
+\item \textbf{snak\_id}: Primary key. Refering to the table mainsnak.
+\item \textbf{value}: The content of the string.
+\end{itemize}
 \subsection{datavalue\_time}
 \lstset{language=SQL}
 Table schema:
@@ -204,6 +234,16 @@ CREATE TABLE IF NOT EXISTS `wikidata`.`datavalue_time` (
   PRIMARY KEY (`snak_id`))
 ENGINE = InnoDB
 \end{lstlisting}
+The data strored in corresponding fields:
+\begin{itemize}
+\item \textbf{snak\_id}: Primary key. Refering to the table mainsnak.
+\item \textbf{time}: The content of the string.
+\item \textbf{timezone}: Signed integer. Now unused.
+\item \textbf{before}: Begin of an uncertainty range, given in the unit defined by the precision field. This cannot be used to represent a duration.
+\item \textbf{after}: End of an uncertainty range, given in the unit defined by the precision field. This cannot be used to represent a duration.
+\item \textbf{precision}: To what unit is the given date/time significant.
+\item \textbf{calendarmodel}: A URI of a calendar model, such as gregorian or julian. Typically given as the URI of a data item on the repository.
+\end{itemize}
 \subsection{datavalue\_globecoordinate}
 \lstset{language=SQL}
 Table schema:
@@ -218,6 +258,16 @@ CREATE TABLE IF NOT EXISTS `wikidata`.`datavalue_globecoordinate` (
   PRIMARY KEY (`snak_id`))
 ENGINE = InnoDB
 \end{lstlisting}
+The data strored in corresponding fields:
+\begin{itemize}
+\item \textbf{snak\_id}: Primary key. Refering to the table mainsnak.
+\item \textbf{latitude}: The latitude part of the coordinate in degrees, as a float literal (or an equivalent string).
+\item \textbf{longitude}: The longitude part of the coordinate in degrees, as a float literal (or an equivalent string).
+\item \textbf{altitude}: Deprecated and no longer used. Will be dropped in the future.
+\item \textbf{precision}: the coordinate's precision, in (fractions of) degrees, given as a float literal (or an equivalent string).
+\item \textbf{precision}: To what unit is the given date/time significant.
+\item \textbf{globe}: the URI of a reference globe.
+\end{itemize}
 \subsection{datavalue\_quantity}
 \lstset{language=SQL}
 Table schema:
@@ -231,6 +281,14 @@ CREATE TABLE IF NOT EXISTS `wikidata`.`datavalue_quantity` (
   PRIMARY KEY (`snak_id`))
 ENGINE = InnoDB
 \end{lstlisting}
+The data strored in corresponding fields:
+\begin{itemize}
+\item \textbf{snak\_id}: Primary key. Refering to the table mainsnak.
+\item \textbf{amount}: The nominal value of the quantity, as an arbitrary precision decimal string. The string always starts with a character indicating the sign of the value, either "+" or "-".
+\item \textbf{upperBound}: Optionally, the upper bound of the quantity's uncertainty interval, using the same notation as the amount field.
+\item \textbf{lowerBound}: Optionally, the lower bound of the quantity's uncertainty interval, using the same notation as the amount field.
+\item \textbf{unit}: the URI of a unit (or "1" to indicate a unit-less quantity).
+\end{itemize}
 \subsection{datavalue\_wikibase}
 \lstset{language=SQL}
 Table schema:
@@ -241,6 +299,11 @@ CREATE TABLE IF NOT EXISTS `wikidata`.`datavalue_wikibase` (
   PRIMARY KEY (`snak_id`))
 ENGINE = InnoDB
 \end{lstlisting}
+The data strored in corresponding fields:
+\begin{itemize}
+\item \textbf{snak\_id}: Primary key. Refering to the table mainsnak.
+\item \textbf{id}: defines the id of the entity.
+\end{itemize}
 \subsection{qualifier}
 \lstset{language=SQL}
 Table schema:
@@ -257,6 +320,14 @@ CREATE TABLE IF NOT EXISTS `wikidata`.`qualifier` (
   PRIMARY KEY (`serial_id`))
 ENGINE = InnoDB
 \end{lstlisting}
+The data strored in corresponding fields:
+\begin{itemize}
+\item \textbf{serial\_id}: Primary key.
+\item \textbf{hash}: Hash value, may be duplicated.
+\item \textbf{snaktype}: Similar to the table mainsnak.
+\item \textbf{property\_id}: Similar to the table mainsnak.
+\item \textbf{datatype}: Similar to the table mainsnak.
+\end{itemize}
 \section{}
 
 This project i

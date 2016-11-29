@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/W32TeX) (preloaded format=pdflatex 2016.4.24)  29 NOV 2016 18:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (TeX Live 2014/W32TeX) (preloaded format=pdflatex 2016.4.24)  29 NOV 2016 20:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -421,47 +421,70 @@ LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (j:/texlive/2014/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2014/03/04 1.5c listings language file
 )
-LaTeX Font Info:    Try loading font information for OT1+pcr on input line 134.
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 131.
 
 
 (j:/texlive/2014/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 LaTeX Font Info:    Font shape `OT1/pcr/bx/n' in size <9> not available
-(Font)              Font shape `OT1/pcr/b/n' tried instead on input line 135.
+(Font)              Font shape `OT1/pcr/b/n' tried instead on input line 132.
+LaTeX Font Info:    Try loading font information for OMS+ptm on input line 146.
+
+
+(j:/texlive/2014/texmf-dist/tex/latex/psnfss/omsptm.fd
+File: omsptm.fd 
+)
+LaTeX Font Info:    Font shape `OMS/ptm/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 146.
  [1{j:/texlive/2014/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 267.
- [2]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 267.
+Underfull \hbox (badness 10000) in paragraph at lines 171--172
+[]\OT1/ptm/b/n/12 desc[]language\OT1/ptm/m/n/12 : Sim-i-lar to en-
+ []
+
+[2]
+Underfull \hbox (badness 2469) in paragraph at lines 288--289
+[]\OT1/ptm/b/n/12 upperBound\OT1/ptm/m/n/12 : Op-tion-ally, the up-per
+ []
+
+[3]
+Underfull \hbox (badness 3375) in paragraph at lines 289--290
+[]\OT1/ptm/b/n/12 lowerBound\OT1/ptm/m/n/12 : Op-tion-ally, the lower
+ []
+
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 338.
+[4]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 338.
  (./report.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 267.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 267.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 338.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 338.
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 783A9A691F87B9E611BC94C3CA90D02A;808.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 267.
+(rerunfilecheck)             Checksum: DAE92C1D816487BBC70BE47E839AD5E4;762.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 338.
  )
 (\end occurred when \iffalse on line 331 was incomplete) 
 Here is how much of TeX's memory you used:
- 7954 strings out of 493117
- 113166 string characters out of 6138984
- 429968 words of memory out of 5000000
- 11186 multiletter control sequences out of 15000+600000
+ 7971 strings out of 493117
+ 113444 string characters out of 6138984
+ 308846 words of memory out of 5000000
+ 11199 multiletter control sequences out of 15000+600000
  18910 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 29i,10n,40p,274b,1681s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 29i,10n,40p,274b,1374s stack positions out of 5000i,500n,10000p,200000b,80000s
 {j:/texlive/2014/texmf-
-dist/fonts/enc/dvips/base/8r.enc}<j:/texlive/2014/texmf-dist/fonts/type1/urw/co
-urier/ucrb8a.pfb><j:/texlive/2014/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb
-><j:/texlive/2014/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><j:/texlive/2014/
-texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on report.pdf (2 pages, 64611 bytes).
+dist/fonts/enc/dvips/base/8r.enc}<j:/texlive/2014/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmsy10.pfb><j:/texlive/2014/texmf-dist/fonts/type1/urw/courier/ucr
+b8a.pfb><j:/texlive/2014/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><j:/texl
+ive/2014/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><j:/texlive/2014/texmf-dis
+t/fonts/type1/urw/times/utmr8a.pfb>
+Output written on report.pdf (4 pages, 82353 bytes).
 PDF statistics:
- 224 PDF objects out of 1000 (max. 8388607)
- 213 compressed objects within 3 object streams
- 111 named destinations out of 1000 (max. 500000)
- 113 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 231 PDF objects out of 1000 (max. 8388607)
+ 217 compressed objects within 3 object streams
+ 112 named destinations out of 1000 (max. 500000)
+ 105 words of extra memory for PDF output out of 10000 (max. 10000000)
 

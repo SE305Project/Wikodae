@@ -1,14 +1,13 @@
-\BOOKMARK [1][-]{section.1}{MOTIVATION}{}% 1
-\BOOKMARK [1][-]{section.2}{ER Models}{}% 2
-\BOOKMARK [1][-]{section.3}{Table Designs}{}% 3
-\BOOKMARK [2][-]{subsection.3.1}{entity}{section.3}% 4
-\BOOKMARK [2][-]{subsection.3.2}{description}{section.3}% 5
-\BOOKMARK [2][-]{subsection.3.3}{mainsnak}{section.3}% 6
-\BOOKMARK [2][-]{subsection.3.4}{datavalue\137string}{section.3}% 7
-\BOOKMARK [2][-]{subsection.3.5}{datavalue\137time}{section.3}% 8
-\BOOKMARK [2][-]{subsection.3.6}{datavalue\137globecoordinate}{section.3}% 9
-\BOOKMARK [2][-]{subsection.3.7}{datavalue\137quantity}{section.3}% 10
-\BOOKMARK [2][-]{subsection.3.8}{datavalue\137wikibase}{section.3}% 11
-\BOOKMARK [2][-]{subsection.3.9}{qualifier}{section.3}% 12
-\BOOKMARK [1][-]{section.4}{}{}% 13
-\BOOKMARK [1][-]{section.5}{ACKNOWLEDGEMENT}{}% 14
+\BOOKMARK [1][-]{section.1}{ER Models}{}% 1
+\BOOKMARK [1][-]{section.2}{Table Designs}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{entity}{section.2}% 3
+\BOOKMARK [2][-]{subsection.2.2}{description}{section.2}% 4
+\BOOKMARK [2][-]{subsection.2.3}{mainsnak}{section.2}% 5
+\BOOKMARK [2][-]{subsection.2.4}{datavalue\137string}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.5}{datavalue\137time}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.6}{datavalue\137globecoordinate}{section.2}% 8
+\BOOKMARK [2][-]{subsection.2.7}{datavalue\137quantity}{section.2}% 9
+\BOOKMARK [2][-]{subsection.2.8}{datavalue\137wikibase}{section.2}% 10
+\BOOKMARK [2][-]{subsection.2.9}{qualifier}{section.2}% 11
+\BOOKMARK [1][-]{section.3}{}{}% 12
+\BOOKMARK [1][-]{section.4}{ACKNOWLEDGEMENT}{}% 13
