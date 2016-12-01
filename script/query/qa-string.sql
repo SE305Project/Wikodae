@@ -1,0 +1,1 @@
+select * from datavalue_string where snak_id=''

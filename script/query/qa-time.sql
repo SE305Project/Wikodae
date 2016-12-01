@@ -1,0 +1,1 @@
+select * from datavalue_time where snak_id=''
