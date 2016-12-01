@@ -369,6 +369,7 @@ First we extract the entity ID and entity type, followed by the various language
 
 Then, we deal with the various types of data values that we may encounter in the mainsnaks and qualifiers. This includes string, wikibase-entityid, time, globecoordinate, and quantity types. For each type, we extract the necessary fields needed to populate the corresponding table. We insert these records in the same fashion as before, and continue on to the next iteration.
 
+For details please refer to wikidataDB.py in our code submission.
 \section{DATABASE OVERVIEW}
 
 Due to the constraint of disk size, we only use 100k entities as the set for our experiment. The experiment on the next section is based on the subset below.
@@ -405,7 +406,18 @@ Table statistics:
 
 \section{QUERY DESIGN}
 \subsection{Query 1}
+\subsubsection{Requirement}
+Given a name, return all the entities that match the name.
 \subsubsection{Design}
+\lstset{language=SQL}
+\begin{lstlisting}
+SELECT entity.entity_id, entity.entity_text, description.desc_text
+FROM entity, description 
+WHERE entity_text='universe'
+AND entity_language='en'
+AND description.desc_language='en'
+AND description.entity_id=entity.entity_id
+\end{lstlisting}
 \subsubsection{Performance}
 Sampling 5 examples:
 \begin{center}
@@ -421,7 +433,23 @@ Sampling 5 examples:
   \end{tabular}
 \end{center}
 \subsection{Query 2}
+\subsubsection{Requirement}
+Given an entity, return all preceding categories (instance of and subclass of) it belongs to.
 \subsubsection{Design}
+\lstset{language=SQL}
+\begin{lstlisting}
+SELECT entity.entity_text, entity.entity_id, mainsnak.property_id, entity_language
+FROM entity, mainsnak
+WHERE (mainsnak.property_id="P31" or mainsnak.property_id="P279")
+AND mainsnak.entity_id in (
+	SELECT ent.entity_id 
+    FROM entity as ent 
+    WHERE ent.entity_text="gas")
+AND entity.entity_id in (
+	SELECT wkb.id 
+    FROM datavalue_wikibase as wkb 
+    WHERE wkb.snak_id=mainsnak.snak_id) and entity.entity_language='en'
+\end{lstlisting}
 \subsubsection{Performance}
 Sampling 5 examples:
 \begin{center}
@@ -437,7 +465,28 @@ Sampling 5 examples:
   \end{tabular}
 \end{center}
 \subsection{Query 3}
+\subsubsection{Requirement}
+Given an entity, return all entities that are co-occurred with this entity in one statement.
 \subsubsection{Design}
+\lstset{language=SQL}
+\begin{lstlisting}
+SELECT wkb1.id AS entity_id, wkb2.id AS query_id
+FROM (SELECT snak_id, entity_id, property_id, datatype FROM mainsnak where datatype="wikibase-item") AS snak1, 
+datavalue_wikibase AS wkb1,   
+(SELECT snak_id, entity_id, property_id, datatype FROM mainsnak where datatype="wikibase-item") AS snak2, 
+datavalue_wikibase AS wkb2
+where wkb2.id in (   
+	SELECT distinct ent2.entity_id FROM entity AS ent2   
+    where ent2.entity_text="bench")   
+AND snak1.snak_id=wkb1.snak_id  
+AND snak2.snak_id=wkb2.snak_id  
+AND snak2.datatype="wikibase-item"   
+AND wkb1.id<>wkb2.id   
+AND snak1.property_id=snak2.property_id  
+AND snak1.entity_id=snak2.entity_id
+order by wkb2.id
+
+\end{lstlisting}
 \subsubsection{Performance}
 Sampling 5 examples:
 \begin{center}
@@ -453,7 +502,29 @@ Sampling 5 examples:
   \end{tabular}
 \end{center}
 \subsection{Query 4}
+\subsubsection{Requirement}
+Given an entity, return all the properties and statements it possesses.
 \subsubsection{Design}
+\lstset{language=SQL}
+\begin{lstlisting}
+-- properties
+SELECT e1.entity_text as property_text, e1.entity_id as property_id, snak.entity_id, des1.desc_text as property_desc_text, des2.desc_text as desc_text, e2.entity_text
+FROM entity as e1, mainsnak as snak, description as des1, description as des2, entity as e2
+WHERE e1.entity_id=snak.property_id
+AND e1.entity_language='en'
+AND e2.entity_text="universe" AND e2.entity_language=e1.entity_language
+AND des2.entity_id=e2.entity_id AND des2.desc_language=e1.entity_language
+AND snak.entity_id=e2.entity_id
+AND des1.entity_id=e1.entity_id AND des1.desc_language=e1.entity_language
+
+-- statements
+SELECT snak.snak_id, snak.entity_id, des.desc_text, ent.entity_text
+FROM mainsnak as snak, entity as ent, description as des
+WHERE snak.entity_id=ent.entity_id
+AND ent.entity_text='gas' AND ent.entity_language='en'
+AND des.entity_id=ent.entity_id AND des.desc_language=ent.entity_language
+order by entity_id
+\end{lstlisting}
 \subsubsection{Performance}
 Sampling 5 examples:
 \begin{center}
@@ -468,6 +539,11 @@ Sampling 5 examples:
     \hline
   \end{tabular}
 \end{center}
+\subsection{Q\&A Systems}
+\subsubsection{Requirements}
+Design and implement a basic Q\&A (questioning and answering) system, e.g. if I ask what is the population of China, it should return the correct answer.
+\subsubsection{Code}
+Please refer to our code submission.
 \section{USER INTERFACE DESIGN}
 In this section, we will introduce the design and implementation of our user interface. The user interface is written in PHP. The whole system runs on XAMPP for Windows, which hosts both PHP server and MySQL server. The view of query and Q\&A pages are generated by queries.php and qa.php respectively. There is another model.php file, which serves as an interface between the view and the MySQL database.
 \subsection{Query interface}
