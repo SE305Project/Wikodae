@@ -120,20 +120,20 @@ breaklines=true,
 
 \section{Model Design}
 
-Our models were designed with Workbench. The diagrams are much like ER diagrams but the relationships between entities are implicit. Above the basic requirements, our design provided advanced functions includes:
+Our models were designed with Workbench. The diagrams are much like ER diagrams but the relationships between entities are implicit. Besides the basic requirements, our design provides advanced functions including:
 \begin{enumerate}
 	\item We store the label of entities and text of descriptions in \textbf{all languages}, not only in English.
-	\item For claims we not only store the mainsnaks but also store the \textbf{qualifiers} of them.
-	\item For all the snaks and qualifiers, we designed tables to store their \textbf{datavalues} for different forms of them.
+	\item For claims, we store the \textbf{qualifiers} in addition to the mainsnaks.
+	\item For all the snaks and qualifiers, we designed tables to store various types of \textbf{datavalues}.
 \end{enumerate}
 
 Our design contains nine tables and satisfies BCNF. Moreover, we used \emph{utf8mb4} dataset to support different language characters.
 
-The ER Diagram is as in Figure 1. Details of the design is included in the nect section.
+The ER Diagram can be found in Figure 1. Details of the design are included in the next section.
 
-The programming tools we use:
+The programming tools we used:
 \begin{enumerate}
-	\item Table design and create schema: Workbench
+	\item Table design and create schema: MySQL Workbench
 	\item File parsing and data insert: Python3
 	\item User interface: Apache \& PHP
 \end{enumerate}
@@ -144,7 +144,7 @@ The programming tools we use:
 \caption{The ER diagram of our design}
 \end{figure*}
 \section{Table Designs}
-We finished out table design according to our model design. Our final design contains 9 tables. Reference and aliases is not stored in our tables, while all other information in different languages are stored. The design of our tables is elaborated below:
+We finished our table design according to our model design. Our final design contains 9 tables. Reference and aliases are not stored in our tables, while all other information in different languages are stored. The design of our tables is elaborated below:
 \subsection{entity}
 Table schema:
 \lstset{language=SQL}
@@ -162,9 +162,9 @@ CREATE TABLE IF NOT EXISTS `wikidata`.`entity` (
   INDEX `ETEXT` (`entity_text` ASC))
 ENGINE = InnoDB
 \end{lstlisting}
-The data strored in corresponding fields:
+The data stored in corresponding fields:
 \begin{itemize}
-\item \textbf{serial\_id}: Auto incremental serial ID. As language information is introduced here and entity ID can not be used as Primary Key, so we use this serial\_id here as a Primary Key.
+\item \textbf{serial\_id}: Auto incremental serial ID. Since language information is introduced here and entity ID cannot be used as a Primary Key, we use this serial\_id here as a Primary Key.
 \item \textbf{entity\_id}: ID of the corresponding entity. Eg. Q5, P110, Q123423, etc.
 \item \textbf{entity\_language}: Language of the label of the corresponding entity. Eg. Zh-cn, en, etc.
 \item \textbf{entity\_type}: The entity type identifier. "item" for data items, and "property" for properties.
@@ -214,16 +214,16 @@ CREATE TABLE IF NOT EXISTS `wikidata`.`mainsnak` (
   INDEX `DTYPE` (`datatype` ASC))
 ENGINE = InnoDB
 \end{lstlisting}
-The data strored in corresponding fields:
+The data stored in corresponding fields:
 \begin{itemize}
 \item \textbf{snak\_id}: An arbitrary identifier for the claim, used as Primary Key of this table.
 \item \textbf{entity\_id}: ID of the entity this claim belongs to.
 \item \textbf{property\_id}: The property this claim is describing.
 \item \textbf{serial}: This field is X means this is the Xth claim of this property.
-\item \textbf{claimtype}: the type of the claim - currently either statement or claim.
+\item \textbf{claimtype}: The type of the claim - currently either statement or claim.
 \item \textbf{snaktype}: The type of the snak. Currently, this is one of value, somevalue or novalue.
 \item \textbf{datatype}: The datatype field indicates how the value of the Snak can be interpreted. This fields indicate the concrete table begining with "datavalue\_"
-\item \textbf{rank}: The rank expresses whether this value will be used in queries, and shown be visible per default on a client system. The value is either preferred, normal or deprecated.
+\item \textbf{rank}: The rank expresses whether this value will be used in queries, and shown be visible per default on a client system. The value is either preferred, normal, or deprecated.
 \end{itemize}
 \subsection{datavalue\_string}
 \lstset{language=SQL}
@@ -361,7 +361,7 @@ The data strored in corresponding fields:
 \end{itemize}
 In Figure 2
 \section{DATA POPULATING}
-Populating the database - python script:
+Populating the database - Python script:
 
 In order to populate the database, we have written a Python script to read the JSON file line by line and extract the information that we need. The populating process is as follows:
 
