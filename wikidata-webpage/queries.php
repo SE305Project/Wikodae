@@ -1,6 +1,7 @@
 <!DOCTYPE HTML> 
 <html>
 	<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<style>
 			.error {color: #FF0000;}
 		</style>
@@ -13,8 +14,10 @@ require "model/model.php";
 
 $queryErr = $inputErr = "";
 $query = $input = "";
+$lan="en";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $lan=test_input($_POST["lan"]);
     if (empty($_POST["query-check"])) {
         $queryErr = "You have to select exactly one query.";
     } else {
@@ -25,7 +28,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $inputErr = "You have to input the query.";
                 } else {
                     $input = test_input($_POST["query1-input"]);
-                    $result = query1($input);
                 }
                 break;
             case 'query2':
@@ -67,6 +69,18 @@ function test_input($data) {
 
 <h2>Queries</h2>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
+    language: 
+    <select name="lan">
+        <?php
+            $res=all_language();
+            echo "<option value='en'>en</option>";
+            while($row = mysql_fetch_array($res)){
+                    echo "<option value='".$row["entity_language"]."'>";
+                    echo $row["entity_language"]."</option>";
+                }
+        ?>
+    </select>
+    <br><br>
 
     <input type="radio" name="query-check" value="query1">Query 1<br>
     Given a name, return all the entities that match the name.
@@ -98,6 +112,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and $inputErr == "" and $queryErr == ""
     echo "<br>";
     echo "input: ".$input;
     echo "<br>";
+    echo "language: ".$lan;
+    echo "<br>";
     echo "result: <br>";
     switch ($query) {
         case 'query1':
@@ -105,7 +121,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and $inputErr == "" and $queryErr == ""
                 $inputErr = "You have to input the query.";
             } else {
                 $input = test_input($_POST["query1-input"]);
-                $result = query1($input);
+                $result = query1($input, $lan);
                 echo "<ul>";
                 while($row = mysql_fetch_array($result)){
                     echo "<li>";
@@ -121,7 +137,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and $inputErr == "" and $queryErr == ""
                 $inputErr = "You have to input the query.";
             } else {
                 $input = test_input($_POST["query2-input"]);
-                $result = query2($input);
+                $result = query2($input,$lan);
                 echo "<ul>";
                 while($row = mysql_fetch_array($result)){
                     echo "<li>";
@@ -139,8 +155,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and $inputErr == "" and $queryErr == ""
                 $result = query3($input);
                 echo "<ul>";
                 while($row = mysql_fetch_array($result)){
-                    $result_name = mysql_fetch_array(entity_text_by_id($row["result_id"]));
-                    echo "<li> entity_name: ".$result_name["entity_text"].", entity_id:".$row["result_id"].", query_id: ".$row["query_id"]."</li>";
+                    $result_name = mysql_fetch_array(entity_text_by_id($row["result_id"],$lan));
+                    echo "<li> entity_name: ".$result_name["entity_text"]."<br>";
+                    echo "entity_id: ".$row["result_id"]."<br>";
+                    echo "query_id: ".$row["query_id"]."</li>"."<br>";
                 }
                 echo "</ul>";
             }
@@ -150,8 +168,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and $inputErr == "" and $queryErr == ""
                 $inputErr = "You have to input the query.";
             } else {
                 $input = test_input($_POST["query4-input"]);
-                $result1 = query4_properties($input);
-                $result2 = query4_statements($input);
+                $result1 = query4_properties($input,$lan);
+                $result2 = query4_statements($input,$lan);
                 echo "<ul>";
                 while($row = mysql_fetch_array($result1)){
                     echo "<li>";
