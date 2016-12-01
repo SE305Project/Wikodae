@@ -31,6 +31,10 @@
 \contentsline {subsection}{\numberline {5.5}Q\&A Systems}{6}{subsection.5.5}
 \contentsline {subsubsection}{\numberline {5.5.1}Requirements}{6}{subsubsection.5.5.1}
 \contentsline {subsubsection}{\numberline {5.5.2}Code}{6}{subsubsection.5.5.2}
+\contentsline {subsection}{\numberline {5.6}Extra Queries}{7}{subsection.5.6}
+\contentsline {subsubsection}{\numberline {5.6.1}Description}{7}{subsubsection.5.6.1}
+\contentsline {subsubsection}{\numberline {5.6.2}Design}{7}{subsubsection.5.6.2}
+\contentsline {subsubsection}{\numberline {5.6.3}Example}{7}{subsubsection.5.6.3}
 \contentsline {section}{\numberline {6}USER INTERFACE DESIGN}{7}{section.6}
 \contentsline {subsection}{\numberline {6.1}Query interface}{7}{subsection.6.1}
 \contentsline {subsection}{\numberline {6.2}Q\&A interface}{7}{subsection.6.2}

@@ -31,6 +31,10 @@
 \BOOKMARK [2][-]{subsection.5.5}{Q\046A Systems}{section.5}% 31
 \BOOKMARK [3][-]{subsubsection.5.5.1}{Requirements}{subsection.5.5}% 32
 \BOOKMARK [3][-]{subsubsection.5.5.2}{Code}{subsection.5.5}% 33
-\BOOKMARK [1][-]{section.6}{USER INTERFACE DESIGN}{}% 34
-\BOOKMARK [2][-]{subsection.6.1}{Query interface}{section.6}% 35
-\BOOKMARK [2][-]{subsection.6.2}{Q\046A interface}{section.6}% 36
+\BOOKMARK [2][-]{subsection.5.6}{Extra Queries}{section.5}% 34
+\BOOKMARK [3][-]{subsubsection.5.6.1}{Description}{subsection.5.6}% 35
+\BOOKMARK [3][-]{subsubsection.5.6.2}{Design}{subsection.5.6}% 36
+\BOOKMARK [3][-]{subsubsection.5.6.3}{Example}{subsection.5.6}% 37
+\BOOKMARK [1][-]{section.6}{USER INTERFACE DESIGN}{}% 38
+\BOOKMARK [2][-]{subsection.6.1}{Query interface}{section.6}% 39
+\BOOKMARK [2][-]{subsection.6.2}{Q\046A interface}{section.6}% 40

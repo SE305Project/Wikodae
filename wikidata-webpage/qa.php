@@ -44,7 +44,15 @@ function test_input($data) {
 <a href='index.php'>back to index</a><br><br>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
 
-    What is the <input type="text" name="query1-input1"> of <input type="text" name="query1-input2"> 
+    What is the <select name="query1-input1">
+        <?php
+            $res=all_property();
+            while($row = mysql_fetch_array($res)){
+                    echo "<option value='".$row["entity_text"]."'>";
+                    echo $row["entity_text"].', '.$row["entity_id"]."</option>";
+                }
+        ?>
+    </select> of <input type="text" name="query1-input2"> 
     <br><br>
 
     <input type="submit" name="submit" value="submit"> 
@@ -57,7 +65,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and $inputErr == "" and $queryErr == ""
     echo "<br>";
     echo "input1: ".$entity_name;
     echo "<br>";
-    echo "input2: ".$property_name;
+    echo "input2: ".$property_name.", which may means: ";
+    $tmp=query1($property_name,'en');
+    echo "<ul>";
+    while($row=mysql_fetch_array($tmp)){
+        echo "<li>".$row["entity_id"].", ".$row["desc_text"]."</li>";
+    }echo "</ul>";
+    echo "<h4>result:</h4>";
     switch ($query) {
         case 'query1':
             $base = qa_base($entity_name,$property_name);

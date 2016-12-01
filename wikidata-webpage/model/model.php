@@ -91,6 +91,11 @@ function query4_statements($input, $lan){
 	return $result;
 }
 
+function extra_query($value='')
+{
+	return;
+}
+
 function entity_text_by_id($id, $lan){
 	$con = connect_db();
 	$query = "select entity_text from entity
