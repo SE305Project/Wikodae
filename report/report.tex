@@ -185,7 +185,7 @@ CREATE TABLE IF NOT EXISTS `wikidata`.`description` (
   INDEX `DLANG` (`desc_language` ASC))
 ENGINE = InnoDB
 \end{lstlisting}
-The data strored in corresponding fields:
+The data stored in corresponding fields:
 \begin{itemize}
 \item \textbf{serial\_id}: Same as in table 'entity'.
 \item \textbf{entity\_id}: Same as in table 'entity'.
@@ -235,7 +235,7 @@ CREATE TABLE IF NOT EXISTS `wikidata`.`datavalue_string` (
   PRIMARY KEY (`snak_id`))
 ENGINE = InnoDB
 \end{lstlisting}
-The data strored in corresponding fields:
+The data stored in corresponding fields:
 \begin{itemize}
 \item \textbf{snak\_id}: Primary key. Refering to the table mainsnak.
 \item \textbf{value}: The content of the string.
@@ -255,7 +255,7 @@ CREATE TABLE IF NOT EXISTS `wikidata`.`datavalue_time` (
   PRIMARY KEY (`snak_id`))
 ENGINE = InnoDB
 \end{lstlisting}
-The data strored in corresponding fields:
+The data stored in corresponding fields:
 \begin{itemize}
 \item \textbf{snak\_id}: Primary key. Refering to the table mainsnak.
 \item \textbf{time}: The content of the string.
@@ -279,7 +279,7 @@ CREATE TABLE IF NOT EXISTS `wikidata`.`datavalue_globecoordinate` (
   PRIMARY KEY (`snak_id`))
 ENGINE = InnoDB
 \end{lstlisting}
-The data strored in corresponding fields:
+The data stored in corresponding fields:
 \begin{itemize}
 \item \textbf{snak\_id}: Primary key. Refering to the table mainsnak.
 \item \textbf{latitude}: The latitude part of the coordinate in degrees, as a float literal (or an equivalent string).
@@ -308,7 +308,7 @@ CREATE TABLE IF NOT EXISTS `wikidata`.`datavalue_quantity` (
   PRIMARY KEY (`snak_id`))
 ENGINE = InnoDB
 \end{lstlisting}
-The data strored in corresponding fields:
+The data stored in corresponding fields:
 \begin{itemize}
 \item \textbf{snak\_id}: Primary key. Refering to the table mainsnak.
 \item \textbf{amount}: The nominal value of the quantity, as an arbitrary precision decimal string. The string always starts with a character indicating the sign of the value, either "+" or "-".
@@ -326,7 +326,7 @@ CREATE TABLE IF NOT EXISTS `wikidata`.`datavalue_wikibase` (
   PRIMARY KEY (`snak_id`))
 ENGINE = InnoDB
 \end{lstlisting}
-The data strored in corresponding fields:
+The data stored in corresponding fields:
 \begin{itemize}
 \item \textbf{snak\_id}: Primary key. Refering to the table mainsnak.
 \item \textbf{id}: defines the id of the entity.
@@ -350,7 +350,7 @@ CREATE TABLE IF NOT EXISTS `wikidata`.`qualifier` (
   INDEX `HASH` (`hash` ASC))
 ENGINE = InnoDB
 \end{lstlisting}
-The data strored in corresponding fields:
+The data stored in corresponding fields:
 \begin{itemize}
 \item \textbf{serial\_id}: Primary key.
 \item \textbf{hash}: Hash value of qualifier. Used to build connection between table qualifier and datavalue\_ series.
