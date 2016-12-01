@@ -40,11 +40,13 @@ function test_input($data) {
 }
 ?>
 
-<h2>Queries</h2>
+<h2>Q&A system</h2>
+<a href='index.php'>back to index</a><br><br>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
 
     What is the <input type="text" name="query1-input1"> of <input type="text" name="query1-input2"> 
     <br><br>
+
     <input type="submit" name="submit" value="submit"> 
 </form>
 

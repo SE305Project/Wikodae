@@ -68,6 +68,7 @@ function test_input($data) {
 ?>
 
 <h2>Queries</h2>
+<a href='index.php'>back to index</a><br><br>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
     language: 
     <select name="lan">
@@ -176,16 +177,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" and $inputErr == "" and $queryErr == ""
                     echo "property id: ".$row["property_id"]."<br>";
                     echo "property name: ".$row["property_text"]."<br>";
                     echo "property description: ".$row["property_desc_text"]."<br>";
-                    echo "queried entity id: ".$row["entity_id"]."<br>";
-                    echo "queried entity name: ".$row["entity_text"]."<br>";
-                    echo "queried entity description: ".$row["desc_text"]."</li>"."<br>";
+                    echo "query entity id: ".$row["entity_id"]."<br>";
+                    echo "query entity name: ".$row["entity_text"]."<br>";
+                    echo "query entity description: ".$row["desc_text"]."</li>"."<br>";
                 }
                 while($row = mysql_fetch_array($result2)){
                     echo "<li>";
                     echo "statements id: ".$row["snak_id"]."<br>";
-                    echo "queried entity id: ".$row["entity_id"]."<br>";
-                    echo "queried entity name: ".$row["entity_text"]."<br>";
-                    echo "queried entity description: ".$row["desc_text"]."</li>"."<br>";
+                    echo "query entity id: ".$row["entity_id"]."<br>";
+                    echo "query entity name: ".$row["entity_text"]."<br>";
+                    echo "query entity description: ".$row["desc_text"]."</li>"."<br>";
                 }
                 echo "</ul>";
             }
