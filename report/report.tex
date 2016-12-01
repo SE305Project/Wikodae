@@ -26,6 +26,7 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{listings}
+\usepackage{float}
 \lstset{
 basicstyle=\footnotesize\ttfamily,
 breaklines=true,
@@ -116,29 +117,49 @@ breaklines=true,
 \newpage
 \pagenumbering{arabic}
 
-\begin{abstract}
-	With the developing ofacknowledgement.
-\end{abstract}
 
-\section{ER Models}
-Our system is 
+\section{Model Design}
 
+Our models were designed with Workbench. The diagrams are much like ER diagrams but the relationships between entities are implicit. Above the basic requirements, our design provided advanced functions includes:
+\begin{enumerate}
+	\item We store the label of entities and text of descriptions in \textbf{all languages}, not only in English.
+	\item For claims we not only store the mainsnaks but also store the \textbf{qualifiers} of them.
+	\item For all the snaks and qualifiers, we designed tables to store their \textbf{datavalues} for different forms of them.
+\end{enumerate}
+
+Our design contains nine tables and satisfies BCNF. Moreover, we used \emph{utf8mb4} dataset to support different language characters.
+
+The ER Diagram is as in Figure 1. Details of the design is included in the nect section.
+
+The programming tools we use:
+\begin{enumerate}
+	\item Table design and create schema: Workbench
+	\item File parsing and data insert: Python3
+	\item User interface: Apache \& PHP
+\end{enumerate}
+\begin{figure*}
+\label{ER DIAGRAM}
+\centering
+\includegraphics[width=0.8\linewidth]{ER.png}
+\caption{The ER diagram of our design}
+\end{figure*}
 \section{Table Designs}
-We finished out table design according to our ER model. Our final design contains 9 tables. Reference information is not stored in our tables, while all other information are stored. The design of our tables is elaborated below:
+We finished out table design according to our model design. Our final design contains 9 tables. Reference and aliases is not stored in our tables, while all other information in different languages are stored. The design of our tables is elaborated below:
 \subsection{entity}
-\lstset{language=SQL}
 Table schema:
+\lstset{language=SQL}
 \begin{lstlisting}
 CREATE TABLE IF NOT EXISTS `wikidata`.`entity` (
   `serial_id` BIGINT(32) NOT NULL AUTO_INCREMENT,
   `entity_id` VARCHAR(32) NOT NULL,
   `entity_language` VARCHAR(16) NOT NULL,
   `entity_type` VARCHAR(16) NULL DEFAULT NULL,
-  `entity_text` VARBINARY(255) NULL DEFAULT NULL,
+  `entity_text` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`serial_id`),
   INDEX `EID` (`entity_id` ASC),
   INDEX `ELANG` (`entity_language` ASC),
-  INDEX `ETYPE` (`entity_type` ASC))
+  INDEX `ETYPE` (`entity_type` ASC),
+  INDEX `ETEXT` (`entity_text` ASC))
 ENGINE = InnoDB
 \end{lstlisting}
 The data strored in corresponding fields:
@@ -158,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `wikidata`.`description` (
   `serial_id` BIGINT(32) NOT NULL AUTO_INCREMENT,
   `entity_id` VARCHAR(32) NOT NULL,
   `desc_language` VARCHAR(8) NULL,
-  `desc_text` VARBINARY(255) NULL,
+  `desc_text` VARCHAR(255) NULL,
   PRIMARY KEY (`serial_id`),
   INDEX `EID` (`entity_id` ASC),
   INDEX `DLANG` (`desc_language` ASC))
@@ -210,7 +231,7 @@ Table schema:
 \begin{lstlisting}
 CREATE TABLE IF NOT EXISTS `wikidata`.`datavalue_string` (
   `snak_id` VARCHAR(64) NOT NULL,
-  `value` VARBINARY(255) NULL DEFAULT NULL,
+  `value` VARCHAR(255) NULL DEFAULT NULL,
   PRIMARY KEY (`snak_id`))
 ENGINE = InnoDB
 \end{lstlisting}
@@ -268,6 +289,12 @@ The data strored in corresponding fields:
 \item \textbf{precision}: To what unit is the given date/time significant.
 \item \textbf{globe}: the URI of a reference globe.
 \end{itemize}
+\begin{figure*}
+\centering
+\label{fig:2}
+\includegraphics[width=0.8\linewidth]{datadetail.png}
+\caption{Details of our table design}
+\end{figure*}
 \subsection{datavalue\_quantity}
 \lstset{language=SQL}
 Table schema:
@@ -311,26 +338,36 @@ Table schema:
 CREATE TABLE IF NOT EXISTS `wikidata`.`qualifier` (
   `serial_id` BIGINT(32) NOT NULL AUTO_INCREMENT,
   `hash` VARCHAR(64) NULL DEFAULT NULL,
+  `snak_id` VARCHAR(64) NULL DEFAULT NULL,
   `snaktype` VARCHAR(32) NULL DEFAULT NULL,
   `property_id` VARCHAR(32) NULL DEFAULT NULL,
   `datatype` VARCHAR(32) NULL DEFAULT NULL,
   INDEX `STYPE` (`snaktype` ASC),
   INDEX `PID` (`property_id` ASC),
   INDEX `DTYPE` (`datatype` ASC),
-  PRIMARY KEY (`serial_id`))
+  PRIMARY KEY (`serial_id`),
+  INDEX `SID` (`snak_id` ASC),
+  INDEX `HASH` (`hash` ASC))
 ENGINE = InnoDB
 \end{lstlisting}
 The data strored in corresponding fields:
 \begin{itemize}
 \item \textbf{serial\_id}: Primary key.
-\item \textbf{hash}: Hash value, may be duplicated.
+\item \textbf{hash}: Hash value of qualifier. Used to build connection between table qualifier and datavalue\_ series.
+\item \textbf{snak\_id}: The id of the snak this qualifier belongs to. Used to build connection between table qualifier and mainsnak.
 \item \textbf{snaktype}: Similar to the table mainsnak.
 \item \textbf{property\_id}: Similar to the table mainsnak.
 \item \textbf{datatype}: Similar to the table mainsnak.
 \end{itemize}
-\section{}
+In Figure 2
+\section{DATA POPULATING}
+Populating the database - python script:
 
-This project i
+In order to populate the database, we have written a Python script to read the JSON file line by line and extract the information that we need. The populating process is as follows:
+
+First we extract the entity ID and entity type, followed by the various languages supported, along with their corresponding descriptions. Once we have this information, we are able to populate both the entity and description tables. Using PyMySQL, we can connect to the MySQL database and effectively insert records. This is followed by the iteration of each property within the claims to populate the remaining tables. We extract information from the mainsnak and qualifiers to insert into the mainsnak table and qualifier table respectively.
+
+Then, we deal with the various types of data values that we may encounter in the mainsnaks and qualifiers. This includes string, wikibase-entityid, time, globecoordinate, and quantity types. For each type, we extract the necessary fields needed to populate the corresponding table. We insert these records in the same fashion as before, and continue on to the next iteration.
 
 \section{ACKNOWLEDGEMENT}
 

@@ -1,4 +1,4 @@
-\BOOKMARK [1][-]{section.1}{ER Models}{}% 1
+\BOOKMARK [1][-]{section.1}{Model Design}{}% 1
 \BOOKMARK [1][-]{section.2}{Table Designs}{}% 2
 \BOOKMARK [2][-]{subsection.2.1}{entity}{section.2}% 3
 \BOOKMARK [2][-]{subsection.2.2}{description}{section.2}% 4
@@ -9,5 +9,5 @@
 \BOOKMARK [2][-]{subsection.2.7}{datavalue\137quantity}{section.2}% 9
 \BOOKMARK [2][-]{subsection.2.8}{datavalue\137wikibase}{section.2}% 10
 \BOOKMARK [2][-]{subsection.2.9}{qualifier}{section.2}% 11
-\BOOKMARK [1][-]{section.3}{}{}% 12
+\BOOKMARK [1][-]{section.3}{DATA POPULATING}{}% 12
 \BOOKMARK [1][-]{section.4}{ACKNOWLEDGEMENT}{}% 13
