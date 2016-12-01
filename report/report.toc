@@ -25,5 +25,5 @@
 \contentsline {subsubsection}{\numberline {5.4.1}Design}{6}{subsubsection.5.4.1}
 \contentsline {subsubsection}{\numberline {5.4.2}Performance}{6}{subsubsection.5.4.2}
 \contentsline {section}{\numberline {6}USER INTERFACE DESIGN}{6}{section.6}
-\contentsline {subsection}{\numberline {6.1}Query interface}{6}{subsection.6.1}
-\contentsline {subsection}{\numberline {6.2}Q\&A interface}{6}{subsection.6.2}
+\contentsline {subsection}{\numberline {6.1}Query interface}{7}{subsection.6.1}
+\contentsline {subsection}{\numberline {6.2}Q\&A interface}{7}{subsection.6.2}
