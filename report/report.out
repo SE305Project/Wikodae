@@ -24,8 +24,6 @@
 \BOOKMARK [2][-]{subsection.5.4}{Query 4}{section.5}% 24
 \BOOKMARK [3][-]{subsubsection.5.4.1}{Design}{subsection.5.4}% 25
 \BOOKMARK [3][-]{subsubsection.5.4.2}{Performance}{subsection.5.4}% 26
-\BOOKMARK [2][-]{subsection.5.5}{Extra Queries}{section.5}% 27
-\BOOKMARK [3][-]{subsubsection.5.5.1}{Given an entity, return all the entities belongs to this entity.}{subsection.5.5}% 28
-\BOOKMARK [1][-]{section.6}{USER INTERFACE DESIGN}{}% 29
-\BOOKMARK [2][-]{subsection.6.1}{Query interface}{section.6}% 30
-\BOOKMARK [2][-]{subsection.6.2}{Q\046A interface}{section.6}% 31
+\BOOKMARK [1][-]{section.6}{USER INTERFACE DESIGN}{}% 27
+\BOOKMARK [2][-]{subsection.6.1}{Query interface}{section.6}% 28
+\BOOKMARK [2][-]{subsection.6.2}{Q\046A interface}{section.6}% 29
