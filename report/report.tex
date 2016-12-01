@@ -370,7 +370,38 @@ First we extract the entity ID and entity type, followed by the various language
 Then, we deal with the various types of data values that we may encounter in the mainsnaks and qualifiers. This includes string, wikibase-entityid, time, globecoordinate, and quantity types. For each type, we extract the necessary fields needed to populate the corresponding table. We insert these records in the same fashion as before, and continue on to the next iteration.
 
 \section{DATABASE OVERVIEW}
-这个我现在写。你不用动
+
+Due to the constraint of disk size, we only use 100k entities as the set for our experiment. The experiment on the next section is based on the subset below.
+
+Overall statistics:
+\begin{center}
+  \begin{tabular}{ | c | c |}
+    \hline
+    name & count \\ \hline\hline
+    entity & 999999 \\ \hline
+    item & 999323 \\ \hline
+    property & 676 \\
+    \hline
+  \end{tabular}
+\end{center}
+
+Table statistics:
+\begin{center}
+  \begin{tabular}{ | c | c |}
+    \hline
+    table & row number \\ \hline\hline
+    datavalue\_globecoordinate & 201934 \\ \hline
+    datavalue\_quantity & 204015 \\ \hline
+    datavalue\_string & 2759499 \\ \hline
+    datavalue\_time & 463418 \\ \hline
+    datavalue\_wikibase & 4501342 \\ \hline
+    description & 6836149 \\ \hline
+    entity & 10430881 \\ \hline
+    mainsnak & 7720798 \\ \hline
+    qualifier & 2759499 \\
+    \hline
+  \end{tabular}
+\end{center}
 
 \section{QUERY DESIGN}
 \subsection{Query 1}
@@ -380,7 +411,7 @@ Sampling 5 examples:
 \begin{center}
   \begin{tabular}{ | c | c | c |}
     \hline
-    serial & entity & time \\ \hline
+    serial & entity & time \\ \hline\hline
     1 & universe & 0.016sec \\ \hline
     2 & dig & 0.015sec \\ \hline
     3 & flower & 0.016sec \\ \hline
@@ -396,7 +427,7 @@ Sampling 5 examples:
 \begin{center}
   \begin{tabular}{ | c | c | c |}
     \hline
-    serial & entity & time \\ \hline
+    serial & entity & time \\ \hline\hline
     1 & universe & 0.047sec \\ \hline
     2 & apple & 0.015sec \\ \hline
     3 & mud & 0.016sec \\ \hline
@@ -412,7 +443,7 @@ Sampling 5 examples:
 \begin{center}
   \begin{tabular}{ | c | c | c |}
     \hline
-    serial & entity & time \\ \hline
+    serial & entity & time \\ \hline\hline
     1 & universe & 0.031sec \\ \hline
     2 & car & 0.032sec \\ \hline
     3 & noodle & 0.031sec \\ \hline
@@ -428,7 +459,7 @@ Sampling 5 examples:
 \begin{center}
   \begin{tabular}{ | c | c | c |}
     \hline
-    serial & entity & time \\ \hline
+    serial & entity & time \\ \hline\hline
     1 & gas & 0.031sec \\ \hline
     2 & kill & 0.000sec \\ \hline
     3 & fix & 0.000sec \\ \hline
