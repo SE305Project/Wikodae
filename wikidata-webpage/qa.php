@@ -45,7 +45,6 @@ function test_input($data) {
 
     What is the <input type="text" name="query1-input1"> of <input type="text" name="query1-input2"> 
     <br><br>
-
     <input type="submit" name="submit" value="submit"> 
 </form>
 

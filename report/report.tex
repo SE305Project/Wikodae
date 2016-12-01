@@ -369,7 +369,79 @@ First we extract the entity ID and entity type, followed by the various language
 
 Then, we deal with the various types of data values that we may encounter in the mainsnaks and qualifiers. This includes string, wikibase-entityid, time, globecoordinate, and quantity types. For each type, we extract the necessary fields needed to populate the corresponding table. We insert these records in the same fashion as before, and continue on to the next iteration.
 
-\section{ACKNOWLEDGEMENT}
+\section{DATABASE OVERVIEW}
+这个我现在写。你不用动
 
-Our projec
+\section{QUERY DESIGN}
+\subsection{Query 1}
+\subsubsection{Design}
+\subsubsection{Performance}
+Sampling 5 examples:
+\begin{center}
+  \begin{tabular}{ | c | c | c |}
+    \hline
+    serial & entity & time \\ \hline
+    1 & universe & 0.016sec \\ \hline
+    2 & dig & 0.015sec \\ \hline
+    3 & flower & 0.016sec \\ \hline
+    3 & president & 0.016sec \\ \hline
+    3 & like '\%mi\%' & 0.172sec \\
+    \hline
+  \end{tabular}
+\end{center}
+\subsection{Query 2}
+\subsubsection{Design}
+\subsubsection{Performance}
+Sampling 5 examples:
+\begin{center}
+  \begin{tabular}{ | c | c | c |}
+    \hline
+    serial & entity & time \\ \hline
+    1 & universe & 0.047sec \\ \hline
+    2 & apple & 0.015sec \\ \hline
+    3 & mud & 0.016sec \\ \hline
+    3 & fly & 0.032sec \\ \hline
+    3 & wind & 0.032sec \\
+    \hline
+  \end{tabular}
+\end{center}
+\subsection{Query 3}
+\subsubsection{Design}
+\subsubsection{Performance}
+Sampling 5 examples:
+\begin{center}
+  \begin{tabular}{ | c | c | c |}
+    \hline
+    serial & entity & time \\ \hline
+    1 & universe & 0.031sec \\ \hline
+    2 & car & 0.032sec \\ \hline
+    3 & noodle & 0.031sec \\ \hline
+    3 & dragon & 0.094sec \\ \hline
+    3 & china & 3.171sec \\
+    \hline
+  \end{tabular}
+\end{center}
+\subsection{Query 4}
+\subsubsection{Design}
+\subsubsection{Performance}
+Sampling 5 examples:
+\begin{center}
+  \begin{tabular}{ | c | c | c |}
+    \hline
+    serial & entity & time \\ \hline
+    1 & gas & 0.031sec \\ \hline
+    2 & kill & 0.000sec \\ \hline
+    3 & fix & 0.000sec \\ \hline
+    3 & dare & 0.006sec \\ \hline
+    3 & knock & 0.016sec \\
+    \hline
+  \end{tabular}
+\end{center}
+\subsection{Extra Queries}
+10' bonus.我觉得你就写点有的没的，比如把q2的父亲变儿子之类？
+\subsubsection{Given an entity, return all the entities belongs to this entity.}
+\section{USER INTERFACE DESIGN}
+\subsection{Query interface}
+\subsection{Q\&A interface}
+
 \end{document} 

@@ -10,4 +10,22 @@
 \BOOKMARK [2][-]{subsection.2.8}{datavalue\137wikibase}{section.2}% 10
 \BOOKMARK [2][-]{subsection.2.9}{qualifier}{section.2}% 11
 \BOOKMARK [1][-]{section.3}{DATA POPULATING}{}% 12
-\BOOKMARK [1][-]{section.4}{ACKNOWLEDGEMENT}{}% 13
+\BOOKMARK [1][-]{section.4}{DATABASE OVERVIEW}{}% 13
+\BOOKMARK [1][-]{section.5}{QUERY DESIGN}{}% 14
+\BOOKMARK [2][-]{subsection.5.1}{Query 1}{section.5}% 15
+\BOOKMARK [3][-]{subsubsection.5.1.1}{Design}{subsection.5.1}% 16
+\BOOKMARK [3][-]{subsubsection.5.1.2}{Performance}{subsection.5.1}% 17
+\BOOKMARK [2][-]{subsection.5.2}{Query 2}{section.5}% 18
+\BOOKMARK [3][-]{subsubsection.5.2.1}{Design}{subsection.5.2}% 19
+\BOOKMARK [3][-]{subsubsection.5.2.2}{Performance}{subsection.5.2}% 20
+\BOOKMARK [2][-]{subsection.5.3}{Query 3}{section.5}% 21
+\BOOKMARK [3][-]{subsubsection.5.3.1}{Design}{subsection.5.3}% 22
+\BOOKMARK [3][-]{subsubsection.5.3.2}{Performance}{subsection.5.3}% 23
+\BOOKMARK [2][-]{subsection.5.4}{Query 4}{section.5}% 24
+\BOOKMARK [3][-]{subsubsection.5.4.1}{Design}{subsection.5.4}% 25
+\BOOKMARK [3][-]{subsubsection.5.4.2}{Performance}{subsection.5.4}% 26
+\BOOKMARK [2][-]{subsection.5.5}{Extra Queries}{section.5}% 27
+\BOOKMARK [3][-]{subsubsection.5.5.1}{Given an entity, return all the entities belongs to this entity.}{subsection.5.5}% 28
+\BOOKMARK [1][-]{section.6}{USER INTERFACE DESIGN}{}% 29
+\BOOKMARK [2][-]{subsection.6.1}{Query interface}{section.6}% 30
+\BOOKMARK [2][-]{subsection.6.2}{Q\046A interface}{section.6}% 31
